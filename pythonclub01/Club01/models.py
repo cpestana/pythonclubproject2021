@@ -31,16 +31,15 @@ class Resource(models.Model):
     resoucetype=models.CharField(max_length=255)
     resourceurl=models.URLField(null=True, blank=True)
     resourcedateentered=models.DateField()
-    user=models.ForeignKey(User, on_delete=models.DO_NOTHING)
     resourcedescription=models.TextField()
-    
+    user=models.ForeignKey(User, on_delete=models.DO_NOTHING)
 
     def __str__(self):
         return self.resourcename
 
     class Meta: 
-        db_table='resource'
-        verbose_name_plural='resources'
+        db_table='Resource'
+        verbose_name_plural='Resources'
 
 class Event(models.Model):
     eventtitle=models.CharField(max_length=255)
