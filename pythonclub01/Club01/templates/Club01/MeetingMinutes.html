@@ -1,9 +1,0 @@
-{% extends 'base.html'%}
-{% block content %}
-<h2> Meeting Minutes </h2>
-<ul>
-    {% for M in MeetingMinutes_list%}
-        <li>{{ M.meetingminutesText }}</li>
-    {% endfor %}
-</ul>
-{% endblock %}

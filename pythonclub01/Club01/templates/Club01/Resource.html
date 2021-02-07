@@ -2,19 +2,20 @@
 {% block content %}
 <h2> Resources</h2>
 <table class='table'>
-    
-<ul>
+<tr>
+    <th>Resource Name</th>
+    <th>Resource Description</th>
+</tr>
     {% for R in Resource_list%}
     <tr>
-        <li>{{ R.resourcename }}</li>
-        <li>{{ R.resourcetype }}</li>
-        <li>{{ R.resourceurl }}</li>
-        <li>{{ R.resourcedateentered }}</li>
-        <li>{{ R.resourcedescription }}</li>
+        <td>{{ R.resourcename }}</td>
+        <td>{{ R.resourcedescription }}</td>
+        
     </tr>
-</ul>
+
     {% endfor %}
     
 </table>
 
 {% endblock %}
+

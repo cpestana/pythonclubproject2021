@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-# Create your models here.
+# Create your models here
 class Meeting(models.Model):
     meetingTitle=models.CharField(max_length=255)
     meetingDate=models.DateField()
@@ -18,7 +18,7 @@ class Meeting(models.Model):
 class MeetingMinutes(models.Model):
     meetingID=models.ForeignKey(Meeting, null=False, on_delete=models.CASCADE)
     meetingattendance=models.ManyToManyField(User, blank=True)
-    meetingminutesText=models.CharField(max_length=255)
+    meetingminutesText=models.CharField(max_length=255, null=True)
     
     def __str__(self):
         return self.meetingminutesText
@@ -55,3 +55,4 @@ class Event(models.Model):
     class Meta: 
         db_table='event'
         verbose_name_plural='events'
+        
