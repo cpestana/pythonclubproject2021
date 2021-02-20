@@ -1,6 +1,8 @@
 from django.test import TestCase
 from django.config.models import user 
 from .models import Meeting, MeetingMinutes, Resource, Event
+import datetime
+import .forms MeetingForm, ResourceForm
 # Create your tests here.
 
 class MeetingTest(TestCase): 
@@ -33,5 +35,32 @@ class EventTest(TestCase):
     
     def test_table(self): 
         self.assertEqual(str(Event._meta.db_table), 'Event')
+
+class NewMeetingForm(TestCase):
+ #valid form data
+ def test_meetingform(self):
+    data = {
+        'meetingTitle':'First Python Project', 
+        'meetingDate':'2021-02-21', 
+        'meetingTime':'05:30:00', 
+        'meetingLocation':'Zoom conference',
+        'meetingAgenda':'First Python project discussion', 
+     }
+    form=MeetingForm (data)
+     self.assertTrue(form.is_valid)
+
+class NewResourceForm(TestCase):
+ #valid form data
+ def test_resourceform(self):
+    data = {
+        'resourcename':'Full stack Python', 
+        'resourcetype':'website', 
+        'resourceurl':'https://www.fullstackpython.com/best-python-resources.html', 
+        'resourcedateentered':'2021-02-19',
+        'resourcedescription':'Good resource for learning Python', 
+        'user':'self.u',
+     }
+    form=ResourceForm (data)
+     self.assertTrue(form.is_valid)
 
 
