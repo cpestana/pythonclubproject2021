@@ -3,6 +3,7 @@ from django.config.models import user
 from .models import Meeting, MeetingMinutes, Resource, Event
 import datetime
 import .forms MeetingForm, ResourceForm
+import django.urls import reverse_lazy, reverse 
 # Create your tests here.
 
 class MeetingTest(TestCase): 
@@ -62,5 +63,14 @@ class NewResourceForm(TestCase):
      }
     form=ResourceForm (data)
      self.assertTrue(form.is_valid)
+
+class New_Meeting_Authentication_Test(TestCase):
+    def setUp(self):
+        self.test_user=User.objects.create_user(username='testuser1', password='P@ssw0rd1')
+        self.resource=Resource.objects.create(resourcename='Full stack Python', resourcetype='website', resourceurl='https://www.fullstackpython.com/best-python-resources.html', resourcedateentered='2021-02-19', resourcedescription='Good resource for learning Python', user=self.test_user)
+
+    def test_redirect_if_not_logged_in(self):
+        response=self.client.get(reverse('newresource'))
+        self.assertRedirects(response, '/accounts/login?next=/Club01/newresource/')
 
 
